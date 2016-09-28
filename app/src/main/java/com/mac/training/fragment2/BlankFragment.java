@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -16,6 +18,7 @@ import android.widget.TextView;
 public class BlankFragment extends Fragment {
     TextView tV;
     Button bT;
+    EditText tN;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -30,11 +33,14 @@ public class BlankFragment extends Fragment {
 
         tV = (TextView) v.findViewById(R.id.textView);
         bT = (Button) v.findViewById(R.id.myB);
+        tN = (EditText) v.findViewById(R.id.theNum);
 
         bT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tV.setText("Great!");
+                commI myActv = (commI) getActivity();
+                myActv.sendValue(tN.getText().toString());
+                Toast.makeText(getContext(), "Yes", Toast.LENGTH_LONG).show();
             }
         });
 

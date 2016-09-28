@@ -6,7 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements commI{
+    SecondFragment sFF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +18,13 @@ public class MainActivity extends AppCompatActivity {
 
 
             BlankFragment bFF = new BlankFragment();
+            sFF = new SecondFragment();
+
 
             FragmentManager fM = getSupportFragmentManager();
             FragmentTransaction tR = fM.beginTransaction();
             tR.add(R.id.myContainer, bFF);
+            tR.add(R.id.myContainer2, sFF);
             //tR.addToBackStack(null);
             tR.commit();
 
@@ -31,5 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void sendValue(String val) {
+        sFF.setTheValue(val);
     }
 }
